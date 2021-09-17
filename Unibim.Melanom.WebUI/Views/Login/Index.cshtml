@@ -1,0 +1,125 @@
+﻿@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>DESEN HOME</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Desen Home | Yetkili Girişi" name="description" />
+    <meta content="" name="author" />
+
+    <link href="/Content/Assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="/Content/Assets/pages/css/login-4.min.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="~/Content/loder.png" />
+</head>
+
+<body class="login" style="background: #9cbbae59">
+
+    <div class="logo">
+        <a href="#">
+            @*<img src="~/Content/logo.png" style="max-width: 400px;" />*@
+
+        </a>
+    </div>
+
+    <div class="content" style="background: rgba(4, 4, 4, 0.56); box-shadow: 0px 35px 44px -22px #1f181b">
+
+        @{
+            if (TempData["mesaj"] == "KullaniciHatalı")
+            {
+                <div class="alert alert-danger">
+                    <button class="close" data-close="alert"></button>
+                    <span><i class="fa fa-warning"></i>&nbsp;Mail adresiniz ile şifreniz uyuşmamaktadır. Hatalı giriş!</span>
+                </div>
+
+            }
+            if (TempData["mesaj"] == "YetkisizKullanici")
+            {
+                <div class="alert alert-danger">
+                    <button class="close" data-close="alert"></button>
+                    <span><i class="fa fa-warning"></i>&nbsp; Girmek istediğiniz bilgilere ait kullanıcı yetkisi bulunmamaktadır!</span>
+                </div>
+
+            }
+        }
+
+    <form class="login-form" action="/Login/Index" method="post">
+        <h3 class="form-title">Kullanıcı Girişi</h3>
+        <div class="alert alert-danger display-hide">
+            <button class="close" data-close="alert"></button>
+            <span>
+                Bilgilerinizi kontrol ediniz.
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Yetki</label>
+            <div class="input-icon">
+                <i class="fa fa-envelope"></i>
+                @Html.DropDownList("yetki", new SelectList(new List<SelectListItem> {
+                                       new SelectListItem { Text = "Yönetici", Value = "1"},
+                                       new SelectListItem { Text = "Bayi", Value = "2"},
+                                       }, "Value", "Text"),
+                                       "Yetki Seçiniz", new { @class = "form-control", @required = "true" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Kullanıcı Adı</label>
+            <div class="input-icon">
+                <i class="fa fa-envelope"></i>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="on" placeholder="Kullanıcı Adınız" name="email" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label ">Şifre</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Kullanıcı Şifreniz" name="sifre" />
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a href="javascript:;" id="forget-password" class="btn blue-hoki btn-outline circle"> Şifremi Unuttum </a>
+            <button type="submit" class="btn blue-hoki circle pull-right"> Giriş </button>
+        </div>
+    </form>
+        <!-- BEGIN FORGOT PASSWORD FORM -->
+        <form class="forget-form" action="/Login/SifremiUnuttum" method="post">
+            <h3>Şifremi Unuttum</h3>
+            <p>Şifrenizi yenilemek için e-posta adresinizi yazınız. </p>
+            <div class="form-group">
+                <div class="input-icon">
+                    <i class="fa fa-envelope"></i>
+                    <input class="form-control placeholder-no-fix" type="email" autocomplete="off" placeholder="E-posta" name="eposta" />
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="back-btn" class="btn red btn-outline circle"> Geri </button>
+                <button type="submit" class="btn green pull-right circle"> Gönder </button>
+            </div>
+        </form>
+    </div>
+   
+    <div class="copyright">
+        @DateTime.Now.Year &copy; <a href="http:\\www.unibim.net" style="color: #ffffff; text-decoration: none;" target="_blank">ÜniBim</a> 
+    </div>
+  
+
+    <script src="/Content/Assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="/Content/Assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/Content/Assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="/Content/Assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/Content/Assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="/Content/Assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script src="/Content/Assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="/Content/Assets/pages/scripts/login-4.js" type="text/javascript" charset="windows-1254"></script>
+</body>
+</html>

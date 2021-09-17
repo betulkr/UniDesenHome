@@ -1,0 +1,75 @@
+﻿@model Altkategori
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit font-blue-hoki"></i>
+            <span class="caption font-blue-hoki bold uppercase">&nbsp; Alt Kategori Düzenle </span>
+        </div>
+        <div class="actions">
+
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="form-body">
+            <form method="post" action="/AltKategori/Duzenle" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Kategori Adı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(x => x.kategoriId, (SelectList)ViewBag.Kategori, Model.Kategori.ad, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Alt Kategori Adı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.ad, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Alt Kategori İconu
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(x=>x.icon, new SelectList(new List<SelectListItem> {
+                                      new SelectListItem { Text = "Kanepe", Value = "f-icon f-icon-sofa"},
+                                      new SelectListItem { Text = "Koltuk", Value = "f-icon f-icon-armchair"},
+                                      new SelectListItem { Text = "Sandalye", Value = "f-icon f-icon-chair"},
+                                      new SelectListItem { Text = "Yemek Masası", Value = "f-icon f-icon-dining-table"},
+                                      new SelectListItem { Text = "Tv Ünitesi", Value = "f-icon f-icon-media-cabinet"},
+                                      new SelectListItem { Text = "Konsol", Value = "f-icon f-icon-media-cabinet"},
+                                      new SelectListItem { Text = "Orta Sehpa", Value = "f-icon f-icon-table"},
+                                      new SelectListItem { Text = "Kitaplık", Value = "f-icon f-icon-bookcase"},
+                                      new SelectListItem { Text = "Yatak", Value = "f-icon f-icon-bedroom"},
+                                      new SelectListItem { Text = "Çocuk Odası", Value = "f-icon f-icon-children-room"},
+                                      new SelectListItem { Text = "komodin", Value = "f-icon f-icon-nightstand"},
+                                      new SelectListItem { Text = "Yatak Odası", Value = "f-icon f-icon-bathroom"},
+                                      new SelectListItem { Text = "Gardrop", Value = "f-icon f-icon-wardrobe"},
+                                      new SelectListItem { Text = "Portmanto", Value = "f-icon f-icon-shoe-cabinet"},
+                                      new SelectListItem { Text = "Aydınlatma", Value = "f-icon f-icon-lightning"},
+                                      new SelectListItem { Text = "Halı", Value = "f-icon f-icon-carpet"},
+                                      new SelectListItem { Text = "Aksesuar", Value = "f-icon f-icon-accessories"},
+                                      new SelectListItem { Text = "Mutfak", Value = "f-icon f-icon-kitchen"},
+                                      new SelectListItem { Text = "Ofis", Value = "f-icon f-icon-office"},
+                                      }, "Value", "Text"),
+                                      Model.icon, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-outline blue-hoki btn-circle">
+                        <i class="glyphicon glyphicon-floppy-saved"></i>&nbsp; Kaydet
+                    </button>
+                    &nbsp;<a data-toggle="collapse" href="/Kategori/Liste" class="btn  default btn-circle"> İptal </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

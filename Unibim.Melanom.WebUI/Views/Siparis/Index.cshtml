@@ -1,0 +1,297 @@
+﻿@model Musteri
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBayi.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<div class="portlet light " id="form_wizard_1">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class=" icon-layers font-red"></i>
+            <span class="caption-subject font-red bold uppercase">
+                Sipariş Oluştur /
+                <span class="step-title"> ADIM-1 : Müşteri Bilgilerini Kaydet </span>
+            </span>
+        </div>
+        <div class="actions">
+
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form class="form-horizontal" action="/Siparis/Index"  method="POST">
+            <div class="form-wizard">
+                <div class="form-body">
+
+                    <ul class="nav nav-pills nav-justified steps">
+                        <li class="active">
+                            <a href="#tab1" data-toggle="tab" class="step">
+                                <span class="number"> 1 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Müşteri Kayıt
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> 2 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Ürün Seçimi
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tab" class="step active">
+                                <span class="number"> 3 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Sepet
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> 4 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> İndirim
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> 5 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Doğrulama
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr />
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            @*<h3 class="block">Provide your account details</h3>*@
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    TC No <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.tc, new { @class = "form-control", @required = "true", @maxlength = "11", @minlength = "11", @type = "number" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Ad Soyad <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.adSoyad, new { @class = "form-control", @required = "true", @type = "text" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Doğum Tarihi <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.doğumTarihi, new { @class = "form-control", @required = "true", @type = "date" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Cinsiyet <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    <input type="radio" value="Kadın" name="cinsiyet" />Kadın
+                                    <input type="radio" value="Erkek" name="cinsiyet" />Erkek
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Medeni Durum <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-6">
+                                    <input type="radio" value="Evli" name="medeniHal" />Evli
+                                    <input type="radio" value="Bekar" name="medeniHal" />Bekar
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Çocuk Sayısı <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.cocuk, new { @class = "form-control", @required = "true", @type = "number" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Eğitim Durumu <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(x => x.eğitimDurumu, new SelectList(new List<SelectListItem> {
+                                      new SelectListItem { Text = "İlkokul", Value = "İlkokul"},
+                                      new SelectListItem { Text = "Lise", Value = "Lise"},
+                                      new SelectListItem { Text = "Üniversite", Value = "Üniversite"},
+                                      new SelectListItem { Text = "Master", Value = "Master"},
+                                      new SelectListItem { Text = "Doktora", Value = "Doktora"},
+                                      }, "Value", "Text"),
+                                      "Eğitim Durumu Seçiniz", new { @class = "form-control", @required = "true" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Meslek <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.meslek, new { @class = "form-control", @required = "true", @type = "text" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Cep Telefonu 1 <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @*<input name="cep1"  class="form-control" required  type = "tel" placeholder = "(5--) (---) (--) (--)" pattern = "[5]{1}[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}" />*@
+                                    @Html.TextBoxFor(x => x.cep1, new { @class = "form-control", @required = "true", @type = "tel", @placeholder = "(5--) (---) (--) (--)", @pattern = "[5]{1}[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Cep Telefonu 2 <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.cep2, new { @class = "form-control", @required = "true", @type = "tel", @placeholder = "(5--) (---) (--) (--)", @pattern = "[5]{1}[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Ev Telefonu
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.evtel, new { @class = "form-control", @required = "true", @type = "tel", @placeholder = "(5--) (---) (--) (--)", @pattern = "[5]{1}[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    İş Telefonu
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.istel, new { @class = "form-control", @required = "true", @type = "tel", @placeholder = "(5--) (---) (--) (--)", @pattern = "[5]{1}[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    E-posta <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.eposta, new { @class = "form-control", @required = "true", @type = "email" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    İl <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(x => x.il, (SelectList)ViewBag.Il, "Teslimat ili seçiniz.", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    İlçe <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.DropDownListFor(x => x.ilce, Enumerable.Empty<SelectListItem>(), "Teslimat ilçesi seçiniz.", new { @class = "form-control", @required = "true" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Semt <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.semt, new { @class = "form-control", @required = "true", @type = "text" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Posta Kodu <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(x => x.postaKodu, new { @class = "form-control", @required = "true", @maxlength = "5", @minlength = "5" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    Teslimat Adresi <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextAreaFor(x => x.teslimAdresi, new { @class = "form-control", @required = "true", @type = "text", @rows = 6 })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label font-blue-hoki bold">
+                                    İş Adresi <span style="color:red"> * </span>
+                                </label>
+                                <div class="col-md-4">
+                                    @Html.TextAreaFor(x => x.isAdres, new { @class = "form-control", @required = "true", @type = "text", @rows = 6 })
+                                </div>
+                            </div>
+
+                            <span style="color:red"> *'la işaretli alanların doldurulması zorunludur. </span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <a href="javascript:;" class="btn default button-previous btn-circle">
+                                <i class="fa fa-angle-left"></i> Geri
+                            </a>
+                            <button type="submit" class="btn btn-outline blue-hoki btn-circle">
+                                <i class="glyphicon glyphicon-floppy-saved"></i>&nbsp; Kaydet
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#il').change(function () {
+                var il = $(this).val();
+
+                if (il != null && il != '') {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("IlceGetir", "Siparis")',
+                        data: { il: il },
+                        success: function (ilces) {
+                            $("#ilce option").remove();
+                            $.each(ilces, function (index, a) {
+                                $('#ilce').append($('<option/>', {
+                                    value: a.ilce,
+                                    text: a.ilce
+                                }));
+                            });
+                        }
+                    });
+                }
+            });
+        });
+</script>
+
+
+<script src="~/Content/themes/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+
+<script src="~/Content/themes/metronic/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<script src="~/Content/themes/metronic/assets/global/scripts/app.min.js" type="text/javascript"></script>
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="~/Content/themes/metronic/assets/pages/scripts/form-wizard.min.js" type="text/javascript"></script>

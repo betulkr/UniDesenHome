@@ -1,0 +1,281 @@
+﻿@model  Unibim.Melanom.WebUI.Models.EntityModel.SiparisOzet 
+@{
+    ViewBag.Title = "Sepet";
+    Layout = "~/Views/Shared/_LayoutBayi.cshtml";
+
+}
+
+
+<link href="~/Content/themes/metronic/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/themes/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+<div class="portlet light " id="form_wizard_1">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class=" icon-layers font-red"></i>
+            <span class="caption-subject font-red bold uppercase">
+                Sipariş Oluştur /
+                <span class="step-title"> ADIM-5 : Doğrulama </span>
+            </span>
+        </div>
+        <div class="actions">
+
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form class="form-horizontal" action="/Siparis/Dogrulama" method="POST">
+            <div class="form-wizard">
+                <div class="form-body">
+
+                    <ul class="nav nav-pills nav-justified steps">
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> <i class="fa fa-check"></i> </span>
+
+                                Müşteri Kayıt
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> <i class="fa fa-check"></i> </span>
+
+                                Ürün Seçimi
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> <i class="fa fa-check"></i> </span>
+
+                                Ürün Özellikleri
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> <i class="fa fa-check"></i> </span>
+
+                                İndirim
+
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#tab3" data-toggle="tab" class="step">
+                                <span class="number"> 5 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Doğrulama
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr />
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab3">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="portlet yellow-crusta box">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-cogs"></i>  Müşteri Bilgileri
+                                            </div>
+                                            <div class="actions">
+                                                <a href="/Siparis/Index" class="btn btn-default btn-sm">
+                                                    <i class="fa fa-pencil"></i> Düzenle
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row static-info">
+                                                <div class="col-md-5 name"> Müşteri Adı Soyadı </div>
+                                                <div class="col-md-7 value">
+                                                    @Model.musteri.adSoyad
+
+                                                </div>
+                                            </div>
+                                            <div class="row static-info">
+                                                <div class="col-md-5 name"> Telefon 1 </div>
+                                                <div class="col-md-7 value"> @Model.musteri.cep1 </div>
+                                                @*<span class="label label-info label-sm"> SMS doğrulaması gönderildi. </span>*@
+                                            </div>
+                                            <div class="row static-info">
+                                                <div class="col-md-5 name"> Telefon 2 </div>
+                                                <div class="col-md-7 value"> @Model.musteri.cep2 </div>
+                                            </div>
+                                            <div class="row static-info">
+                                                <div class="col-md-5 name"> E-mail </div>
+                                                <div class="col-md-7 value"> @Model.musteri.eposta </div>
+                                            </div>
+                                            <div class="row static-info">
+                                                <div class="col-md-5 name"> İl </div>
+                                                <div class="col-md-7 value"> @Model.musteri.il </div>
+                                            </div>
+                                            <div class="row static-info">
+                                                <div class="col-md-5 name"> İlçe </div>
+                                                <div class="col-md-7 value"> @Model.musteri.ilce </div>
+                                            </div>
+                                            <div class="row static-info">
+                                                <div class="col-md-5 name"> Semt </div>
+                                                <div class="col-md-7 value"> @Model.musteri.semt </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="portlet green-meadow box">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-cogs"></i>  Teslimat Adresi
+                                            </div>
+                                            <div class="actions">
+                                                <a href="/Siparis/Index" class="btn btn-default btn-sm">
+                                                    <i class="fa fa-pencil"></i> Düzenle
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row static-info">
+                                                <div class="col-md-12 value">
+                                                   @Model.musteri.teslimAdresi
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="portlet red-sunglo box">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-cogs"></i> İş Adresi
+                                            </div>
+                                            <div class="actions">
+                                                <a href="/Siparis/Index" class="btn btn-default btn-sm">
+                                                    <i class="fa fa-pencil"></i> Düzenle
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="row static-info">
+                                                <div class="col-md-12 value">
+                                                    @Model.musteri.isAdres
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="portlet grey-cascade box">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class="fa fa-cogs"></i>  Sepet Ürünleri
+                                            </div>
+                                            <div class="actions">
+                                                <a href="/Siparis/Sepet" class="btn btn-default btn-sm">
+                                                    <i class="fa fa-pencil"></i> Düzenle
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> Ürün </th>
+                                                            <th> Ürün Durumu </th>
+                                                            <th> Orjinal Fiyat </th>
+                                                            <th> İndirim Oranı </th>
+                                                            <th> İndirimli Fiyat </th>
+                                                            <th> Ürün Özellikleri </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{
+                                                            foreach (var u in Model.sepetUruns)
+                                                            {
+                                                                var sepetUrunOzelliks = Unibim.Melanom.WebUI.Models.Connection.DbModel.EF.SepetUrunOzellik.Where(x => x.sepetUrunId == u.sepetUrunId).ToList();
+
+                                                                <tr>
+                                                                    <td>
+                                                                        @u.Urun.ad
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="label label-sm label-success"> Stokta </span>
+                                                                    </td>
+                                                                    <td> @u.Urun.fiyat </td>
+                                                                    <td> % @u.indirimOranı </td>
+                                                                    <td> @u.indirimliFiyat </td>
+                                                                    <td>
+                                                                        @{
+                                                                            if (sepetUrunOzelliks.Count > 0 && sepetUrunOzelliks != null)
+                                                                            {
+                                                                                foreach (var o in sepetUrunOzelliks)
+                                                                                {
+                                                                                    <span class="label label-sm label-danger">  @o.UrunOzellik.Ozellik.OzellikTur.ad </span><br />
+                                                                                    @o.UrunOzellik.Ozellik.ad
+
+                                                                                    <br /> <br />
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6"> </div>
+                                <div class="col-md-6">
+                                    <div class="well">
+                                        <div class="row static-info align-reverse">
+                                            <div class="col-md-8 name"> İndirimsiz Toplam Fiyat: </div>
+                                            <div class="col-md-3 value"> @Model.toplamFiyat ₺ </div>
+                                        </div>
+                                        <div class="row static-info align-reverse">
+                                            <div class="col-md-8 name"> İndirimli Toplam Fiyat: </div>
+                                            <div class="col-md-3 value"> @Model.indirimliToplamFiyat ₺ </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-12 right">
+                                <a href="javascript:;" class="btn default button-previous btn-circle">
+                                    <i class="fa fa-angle-left"></i> Geri
+                                </a>
+                                <button type="submit" class="btn btn-outline blue-hoki btn-circle">
+                                    <i class="glyphicon glyphicon-floppy-saved"></i>&nbsp; Kaydet
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="~/Content/themes/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/global/scripts/datatable.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/pages/scripts/table-datatables-editable.min.js" type="text/javascript"></script>

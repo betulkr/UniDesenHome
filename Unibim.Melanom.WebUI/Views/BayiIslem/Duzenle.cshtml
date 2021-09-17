@@ -1,0 +1,139 @@
+﻿@model Bayi
+
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+   
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit bold font-blue-hoki"></i>
+            <span class="caption font-blue-hoki bold uppercase">&nbsp;   Bayi Düzenle </span>
+        </div>
+        <div class="actions">
+
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="form-body">
+            <form method="post" action="/BayiIslem/Duzenle" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Yetkilisi Adı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Kullanici.ad, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Yetkilisi Soyadı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Kullanici.soyad, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Yetkilisi E-Mail
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.Kullanici.kullaniciAdi, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Adı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.bayiAd, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi İl
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(x => x.il, (SelectList)ViewBag.Il,Model.il, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi İlçe
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(x => x.ilce, Enumerable.Empty<SelectListItem>(), Model.ilce, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Adres
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(x => x.adres, new { @class = "form-control", @required = "true", @rows = 4 })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Telefon 1
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.telefon1, new { @placeholder = " Numarayı başına 0 koymadan ekleyiniz.", @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Telefon 2
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.telefon2, new { @placeholder = " Numarayı başına 0 koymadan ekleyiniz.", @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Fax
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.fax, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-outline blue-hoki btn-circle">
+                        <i class="glyphicon glyphicon-floppy-saved"></i>&nbsp; Kaydet
+                    </button>
+                    &nbsp;<a data-toggle="collapse" href="/BayiIslem/Kayit" class="btn  default btn-circle"> İptal </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#il').change(function () {
+                var il = $(this).val();
+
+                if (il != null && il != '') {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("IlceGetir", "BayiIslem")',
+                        data: { il: il },
+                        success: function (ilces) {
+                            $("#ilce option").remove();
+                            $.each(ilces, function (index, a) {
+                                $('#ilce').append($('<option/>', {
+                                    value: a.ilce,
+                                    text: a.ilce
+                                }));
+                            });
+                        }
+                    });
+                }
+            });
+        });
+</script>
+
+

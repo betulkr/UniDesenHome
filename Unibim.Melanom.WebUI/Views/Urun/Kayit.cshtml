@@ -1,0 +1,201 @@
+﻿@model Urun
+@{
+    ViewBag.Title = "Kayit";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+
+
+@*<link href="~/Content/assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />*@
+
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-user bold font-blue-hoki"></i>
+            <span class="caption font-blue-hoki bold uppercase">&nbsp;  Yeni Ürün Ekle </span>
+        </div>
+        <div class="actions">
+
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="form-body">
+            <form method="post" action="/Urun/Kayit" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Ürün Adı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.ad, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Genişlik
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.genişlik, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Yükseklik
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.yükseklik, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Derinlik
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.derinlik, new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Ürün Takımı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(x => x.takimId, (SelectList)ViewBag.Takim, "Ürünün bulunduğu takımı seçiniz.", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Ürün Grubu
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(x => x.grupId, (SelectList)ViewBag.Grup, "Ürünün bulunduğu grubu seçiniz.", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Ürün Fiyatı
+                    </label>
+                    <div class="col-md-9">
+                        <input name="fiyat" class="form-control" required type="number" step="any" />
+
+                        @*@Html.TextBoxFor(x => x.fiyat, new { @class = "form-control", @required = "true" })*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Stok Adedi
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(x => x.adet, new { @class = "form-control", @required = "true", @type = "number" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Ürün Açıklaması
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(x => x.aciklama, new { @class = "form-control", @rows = 10, @required = "true", @id = "summernote" })
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Ürün Özellikleri
+                    </label>
+                    <div class="col-md-9">
+
+                        @Html.DropDownList("id[]", (SelectList)ViewBag.Ozellik, new { @class = "form-control", @id = "select2", @multiple = "multiple", @placeholder = "Ürün özelliklerini seçiniz." })-->
+
+                        @*<select class="form-control btn btn-lg blue-hoki" id="select2" multiple >
+                                <optgroup label="Group 1">
+                                    <option value="1-1">Option 1.1</option>
+                                    <option value="1-2">Option 1.2</option>
+                                    <option value="1-3">Option 1.3</option>
+                                </optgroup>
+                                <optgroup label="Group 2">
+                                    <option value="2-1">Option 2.1</option>
+                                    <option value="2-2">Option 2.2</option>
+                                    <option value="2-3">Option 2.3</option>
+                                </optgroup>
+                            </select>*@
+
+                    <!--</div>
+                </div>-->
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Ürün Özellikleri
+                    </label>
+                    <div class="col-md-9">
+                        <div class="form-control height-auto">
+                            <div class="scroller" style="height:275px;" data-always-visible="1">
+
+
+                                <ul class="list-unstyled">
+
+                                    @{
+                                        var ozellikTurs = Unibim.Melanom.WebUI.Models.Connection.DbModel.EF.OzellikTur.ToList();
+
+                                        if (ozellikTurs != null && ozellikTurs.Count > 0)
+                                        {
+                                            foreach (var ot in ozellikTurs)
+                                            {
+                                                var ozelliks = Unibim.Melanom.WebUI.Models.Connection.DbModel.EF.Ozellik.Where(x => x.ozellikTurId == ot.ozellikTurId).ToList();
+
+                                                if (ozelliks != null && ozelliks.Count > 0)
+                                                {
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="tur[]" value="@ot.ozellikTurId"> @ot.ad
+                                                        </label>
+                                                        <ul class="list-unstyled">
+
+                                                            @foreach (var o in ozelliks)
+                                                            {
+                                                            <li>
+                                                                <label>
+                                                                    <input type="checkbox" name="oz[]" value="@o.ozellikId"> @o.ad
+                                                                </label>
+                                                            </li>
+                                                            }
+
+                                                        </ul>
+                                                    </li>
+                                                }
+
+                                            }
+                                        }
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                        <span class="help-block"> Ürüne ait bir yada birden fazla özelliği seçebilirsiniz. </span>
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-outline blue-hoki btn-circle">
+                        <i class="glyphicon glyphicon-floppy-saved"></i>&nbsp; Kaydet
+                    </button>
+                    &nbsp;<a data-toggle="collapse" href="/Urun/Kayit" class="btn  default btn-circle"> İptal </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@*<script>
+    $(function () {
+        //select2 eklentimizin tanımı
+        $('#select2').select2();
+
+    });
+</script>*@
+<script>
+    $(document).ready(function () {
+        $("#summernote").summernote({
+            height: 400
+        });
+
+
+    });
+</script>

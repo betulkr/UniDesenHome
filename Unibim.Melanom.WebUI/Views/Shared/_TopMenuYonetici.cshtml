@@ -1,0 +1,39 @@
+﻿
+@{ 
+    Unibim.Melanom.WebUI.Models.EntityModel.YetkiliKullanici yetkili = (Unibim.Melanom.WebUI.Models.EntityModel.YetkiliKullanici)Session["Yonetici"];
+}
+
+<div class="page-top" >
+
+    <div class="top-menu" >
+        <ul class="nav navbar-nav pull-right">
+           
+            <li class="dropdown dropdown-user">
+
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <img alt="" class="img-circle" src="../../Content/user.png" style="height:35px" />
+                    <span class="username username-hide-on-mobile" style="color:#d1e6e2">
+                    @yetkili.ad @yetkili.soyad
+                    </span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-default">
+
+                    @*<li>
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                           Profilim
+                        </a>
+                    </li>*@
+                    <li>
+                        <a href="/Login/LogOff">
+                            <i class="icon-key"></i>Çıkış Yap
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+</div>
+</div>

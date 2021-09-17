@@ -1,0 +1,28 @@
+﻿@model List<Altkategori>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var m in Model)
+    {
+        <tr>
+            <td> @m.Kategori.ad</td>
+            <td> @m.ad </td>
+            <td class="tableActs" style="width: 140px;">
+                <a title="Detay" class="edit btn btn-sm btn-info circle" href="/AltKategori/Duzenle/@m.altkategoriId"><span class="fa fa-edit"></span></a>
+                <a title="Sil" class="delete btn btn-sm red circle" href="/AltKategori/Sil/@m.altkategoriId" onclick="return confirm('Silmek istediğinizden emin misiniz?')"><span class="fa fa-trash"></span></a>
+            </td>
+        </tr>
+    }
+
+}
+else
+{
+    <tr>
+        <td colspan="3">
+           Kayıt bulunamadı.
+        </td>
+    </tr>
+}
+
+
+
+

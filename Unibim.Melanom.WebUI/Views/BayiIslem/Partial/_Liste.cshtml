@@ -1,0 +1,31 @@
+﻿@model List<Bayi>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var b in Model)
+    {
+        <tr>
+            <td> @b.Kullanici.ad @b.Kullanici.soyad </td>
+            <td> @b.bayiAd </td>
+            <td> @b.il-@b.ilce </td>
+            <td> @b.adres</td>
+            <td> @b.telefon1 <br /> @b.telefon2</td>
+            <td> @b.fax</td>
+            <td class="tableActs" style="width: 140px;">
+                <a title="Düzenle" class="btn btn-sm btn-info circle" href="/BayiIslem/Duzenle/@b.bayiId"><span class="fa fa-edit"></span></a>
+            </td>
+        </tr>
+    }
+
+}
+else
+{
+    <tr>
+        <td colspan="3">
+           Kayıt bulunamadı.
+        </td>
+    </tr>
+}
+
+
+
+

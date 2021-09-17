@@ -1,0 +1,1 @@
+Dosya boyutu büyük olduğundan content klasörü dahil edilmemiştir.

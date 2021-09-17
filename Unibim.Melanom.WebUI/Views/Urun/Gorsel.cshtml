@@ -1,0 +1,114 @@
+﻿@model List<UrunGorsel>
+@{
+    ViewBag.Title = "Gorsel";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+    string urunAd = Session["urunAd"].ToString();
+}
+
+<div class="portlet light bordered collapse" id="ekle">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus font-blue-hoki"></i>
+            <span class="caption font-blue-hoki bold uppercase">&nbsp;  @urunAd/ Yeni Ürün Görseli Ekle </span>
+        </div>
+        <div class="actions">
+
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="form-body">
+            <form method="post" action="/Urun/Gorsel" class="form-horizontal" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Ürün Görseli
+                    </label>
+                    <div class="col-md-9">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-preview thumbnail " data-trigger="fileinput" style="width: 100px; height: 100px;"> </div>
+                            <div>
+                                <span style="color:red"> Ürün görseli 640*480 boyutlarında olmalıdır! </span>
+                                <br />
+                                <span class="btn red btn-outline btn-file btn-circle">
+                                    <span class="fileinput-new"> Resim Seç </span>
+                                    <span class="fileinput-exists"> Değiştir </span>
+                                    <input type="file" name="file" required class="form-control">
+                                </span>
+                                <a href="javascript:;" class="btn red fileinput-exists btn-circle" data-dismiss="fileinput"> Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-outline blue-hoki btn-circle">
+                        <i class="glyphicon glyphicon-floppy-saved"></i>&nbsp; Kaydet
+                    </button>
+                    &nbsp;<a data-toggle="collapse" href="#ekle" class="btn  default btn-circle"> İptal </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-image font-blue-hoki"></i>
+                    <span class="caption-subject font-blue-hoki bold uppercase"> @urunAd / Ürün Görselleri </span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-circle blue-hoki btn-outline btn-sm" data-toggle="collapse"
+                       href="#ekle">
+                        <span class="fa fa-plus"></span> Yeni Görsel Ekle
+                    </a>
+                </div>
+            </div>
+            
+            <div class="portlet-body">
+                <div class="mt-element-card mt-element-overlay">
+                    <div class="row">
+                        @if (Model != null && Model.Count > 0)
+                        {
+                            foreach (var m in Model)
+                            {
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="mt-card-item">
+                                        <div class="mt-card-avatar mt-overlay-4">
+                                            <img src="~/Content/Images/Urun/@m.gorsel" />
+                                            <div class="mt-overlay">
+                                                <h2> @m.Urun.ad </h2>
+                                                <div class="mt-info font-white">
+                                                    <div class="mt-card-content">
+                                                        <div class="mt-card-social">
+                                                            <ul>
+                                                                <li>
+                                                                    <a class="mt-card-btn" href="/Urun/GorselSil/@m.urunGorselId" title="Takım sil" onclick="return confirm('Silmek istediğinizden emin misiniz?')">
+                                                                        <i class="fa fa-trash"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                        else
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                Kayıt bulunamadı.
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

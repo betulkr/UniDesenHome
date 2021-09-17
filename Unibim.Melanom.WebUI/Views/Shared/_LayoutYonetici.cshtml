@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    @System.Web.Optimization.Styles.Render("~/Content/Assets/global/plugins/globalMandatory")
+    @RenderSection("cssPageLevelPlugins", false)
+    @System.Web.Optimization.Styles.Render("~/content/Assets/global/css/themeGlobal")
+    @RenderSection("cssPageLevelStyles", false)
+    @System.Web.Optimization.Styles.Render("~/content/Assets/global/plugins/themeLayout")
+    @System.Web.Optimization.Styles.Render("~/Content/Assets/global/plugins/toaster")
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="~/Content/loder.png" />
+</head>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" style="background-repeat: repeat, no-repeat; background-position: left top; background-size: auto, cover; background-color: rgba(0, 0, 0, 0.1)">
+
+    <div class="page-header navbar navbar-fixed-top">
+        <div class="page-header-inner ">
+            <div class="page-logo">
+
+                <a href="/Yonetici/Index">
+                    @*<img src="~/Content/desen_logo_bg.png" alt="logo" class="logo-default" width="100px" />*@
+                </a>
+
+                <div class="menu-toggler sidebar-toggler">
+                </div>
+            </div>
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"></a>
+            @Html.Partial("/Views/Shared/_TopMenuYonetici.cshtml")
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="page-container">
+        <div class="page-sidebar-wrapper">
+
+            <div class="page-sidebar navbar-collapse collapse">
+
+                @Html.Partial("~/Views/Shared/_MenuYonetici.cshtml")
+
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div class="row" style="margin-top: -10px;">
+                    <div class="col-md-12">
+
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="javascript:;" class="page-quick-sidebar-toggler">
+            <i class="icon-login"></i>
+        </a>
+    </div>
+
+
+    @System.Web.Optimization.Scripts.Render("~/bundles/strategia-aquincum",@*"~/bundles/strategia-cims",*@             "~/bundles/jqueryval", "~/bundles/metronic")
+
+    @System.Web.Optimization.Scripts.Render("~/bundles/toaster")
+    @ToastrHelper.ProcessToastrs()
+    @RenderSection("footerScript", false)
+
+    <link href="~/Content/summernote-develop/summernote.css" rel="stylesheet" />
+    <script src="~/Content/summernote-develop/summernote.js"></script>
+</body>
+
+</html>
+

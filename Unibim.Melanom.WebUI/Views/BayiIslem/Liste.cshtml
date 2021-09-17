@@ -1,0 +1,179 @@
+﻿@model TableParameters<Bayi>
+@{
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+
+}
+
+@*<div class="portlet light bordered collapse" id="ekle">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-bank bold font-blue-hoki"></i>
+            <span class="caption font-blue-hoki bold uppercase">&nbsp;  Yeni Bayi Ekle </span>
+        </div>
+        <div class="actions">
+
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="form-body">
+            <form method="post" action="/BayiIslem/Kayit" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Yetkilisi Adı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBox("Kullanici.ad", "", new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Yetkilisi Soyadı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBox("Kullanici.soyad", "", new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Yetkilisi E-Mail
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBox("kullanici.kullaniciAdi", "", new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Adı
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBox("bayiAd", "", new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi İl
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownList("il", (SelectList)ViewBag.Il, "Bayinin bulunduğu ili seçiniz.", new { @class = "form-control", @id = "il" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi İlçe
+                    </label>
+                    <div class="col-md-9">
+                        @Html.DropDownList("ilce", Enumerable.Empty<SelectListItem>(), "", new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Adres
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextArea("adres", "", new { @class = "form-control", @required = "true", @rows = 4 })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Telefon 1
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBox("telefon1", "", new { @placeholder = " Numarayı başına 0 koymadan ekleyiniz.", @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Telefon 2
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBox("telefon2", "", new { @placeholder = " Numarayı başına 0 koymadan ekleyiniz.", @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label font-blue-hoki bold">
+                        Bayi Fax
+                    </label>
+                    <div class="col-md-9">
+                        @Html.TextBox("fax", "", new { @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-outline blue-hoki btn-circle">
+                        <i class="glyphicon glyphicon-floppy-saved"></i>&nbsp; Kaydet
+                    </button>
+                    &nbsp;<a data-toggle="collapse" href="#ekle" class="btn  default btn-circle"> İptal </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>*@
+@using (Ajax.BeginForm("Liste", "BayiIslem", null, new AjaxOptions { OnBegin = "OnBegin", OnComplete = "OnComplete", OnFailure = "OnFailure", OnSuccess = "CustomOnSuccess" }, null))
+{
+
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-blue-hoki">
+                <i class="fa fa-bank font-blue-hoki"></i>
+                <span class="caption font-blue-hoki bold uppercase">
+                    &nbsp;  Desen Home Bayi Listesi
+                </span>
+                <span class="caption-helper"></span>
+            </div>
+            <div class="actions">
+                <a class="btn btn-circle blue-hoki btn-outline btn-sm" @*data-toggle="collapse"*@
+                   href="/BayiIslem/Kayit">
+                    <span class="fa fa-plus"></span> Yeni Bayi Ekle
+                </a>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="widget">
+                <div class="tablePars">
+                    <div class="dataTables_filter">
+                        <span>  Ara : </span>
+                        <input id="SearchKey" name="SearchKey" type="text" placeholder=" Ara :" /><div class="srch"></div>
+                    </div>
+                    <span class="icos-info tipS search-info" title="--"></span>
+                    <div class="dataTables_length">
+                        <span class="showentries"> Görünen: </span>
+                        <select id="Take" name="Take">
+                            <option value="10" selected="selected">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="tDefault fullwidth table table-hover" id="table-list"
+                       data-search-input="SearchKey" data-take-input="Take">
+                    <thead class="font-blue-hoki">
+                        <tr>
+                            <th> Bayi Sahibi </th>
+                            <th> Bayi Ad </th>
+                            <th> İl-İlçe </th>
+                            <th> Adres</th>
+                            <th> Telefon </th>
+                            <th> Fax </th>
+                            <th style="width:140px;"> İşlemler </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @Html.Partial("~/Views/BayiIslem/Partial/_Liste.cshtml", Model.Data)
+                    </tbody>
+                </table>
+
+                @Html.StrajaxPager(Model.TotalCount, Model.PageIndex, Model.PageCount, "table-list")
+            </div>
+        </div>
+    </div>
+}
+
+@section footerScript{
+    <script>
+        function CustomOnSuccess(result, status, xhr) {
+            OnSuccess(result, status, xhr);
+            ReloadData("#table-list", result);
+        }
+    </script>
+}

@@ -1,0 +1,183 @@
+﻿@model Musteri
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+
+<div class="portlet light portlet-fit portlet-datatable bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-user font-blue-hoki"></i>
+            <span class="caption-subject font-blue-hoki sbold uppercase">
+               Müşteri Profili
+            </span>
+        </div>
+        <div class="actions">
+            <a class="btn btn-circle blue-hoki btn-outline btn-sm"
+               href="/Musteri/Liste">
+                <span class="fa fa-reply"></span> Geri
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet red box">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-user"></i> Müşteri Kişisel Bilgileri
+                        </div>
+                        <div class="actions">
+
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Ad-Soyad </div>
+                            <div class="col-md-7 value">
+                                @Model.adSoyad
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> TC No</div>
+                            <div class="col-md-7 value">
+                                @Model.tc
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Doğum Tarihi </div>
+                            <div class="col-md-7 value">
+                                @Model.doğumTarihi
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Eğitim Durumu </div>
+                            <div class="col-md-7 value">
+                                @Model.eğitimDurumu
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Meslek </div>
+                            <div class="col-md-7 value">
+                                @Model.meslek
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Medeni Hal </div>
+                            <div class="col-md-7 value">
+                                @Model.medeniHal
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Çocuk Sayısı </div>
+                            <div class="col-md-7 value">
+                                @Model.cocuk
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet blue box">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-user"></i> Müşteri İletişim Bilgileri
+                        </div>
+                        <div class="actions">
+
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> E-posta </div>
+                            <div class="col-md-7 value">
+                                @Model.eposta
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Cep Telefonu 1 </div>
+                            <div class="col-md-7 value">
+                                <span class="label label-success"> @Model.cep1 </span>
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Cep Telefonu 2 </div>
+                            <div class="col-md-7 value">
+                                <span class="label label-success"> @Model.cep1 </span>
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> İş Telefonu </div>
+                            <div class="col-md-7 value">
+                                <span class="label label-success"> @Model.istel </span>
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Ev Telefonu </div>
+                            <div class="col-md-7 value">
+                                <span class="label label-success"> @Model.evtel </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet purple box">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-user"></i> Müşteri Adres Bilgileri
+                        </div>
+                        <div class="actions">
+
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Teslimat Adresi </div>
+                            <div class="col-md-7 value">
+                                @Model.teslimAdresi
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> İş Adresi </div>
+                            <div class="col-md-7 value">
+                                @Model.isAdres
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> İl </div>
+                            <div class="col-md-7 value">
+                                @Model.il
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> İlçe </div>
+                            <div class="col-md-7 value">
+                                @Model.ilce
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Semt </div>
+                            <div class="col-md-7 value">
+                                @Model.semt
+                            </div>
+                        </div>
+                        <div class="row static-info">
+                            <div class="col-md-5 name"> Posta Kodu </div>
+                            <div class="col-md-7 value">
+                                @Model.postaKodu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

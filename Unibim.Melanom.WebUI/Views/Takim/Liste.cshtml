@@ -1,0 +1,100 @@
+﻿@model List<Takim>
+@{
+    ViewBag.Title = "Liste";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+    var altkategoris = Unibim.Melanom.WebUI.Models.Connection.DbModel.EF.Altkategori.ToList();
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class=" icon-layers font-blue-hoki"></i>
+                    <span class="caption-subject font-blue-hoki bold uppercase"> Takım Listesi </span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-circle blue-hoki btn-outline btn-sm" href="/Takim/Kayit">
+                        <span class="fa fa-plus"></span>   Yeni Takım Ekle
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-title">
+                <a class="btn btn-circle blue-hoki  btn-sm" href="/Takim/Liste">
+                    Tümü
+                </a>
+                @{
+                    if (altkategoris.Count > 0)
+                    {
+                        foreach (var i in altkategoris)
+                        {
+                            <a class="btn btn-circle blue-hoki  btn-sm" href="/Takim/Detay/@i.altkategoriId">
+                                @i.ad
+                            </a>
+                        }
+
+                    }
+                }
+            </div>
+            <div class="portlet-body">
+                <div class="mt-element-card mt-element-overlay">
+                    <div class="row">
+                        @if (Model != null && Model.Count > 0)
+                        {
+                            foreach (var m in Model)
+                            {
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="mt-card-item">
+                                        <div class="mt-card-avatar mt-overlay-4">
+                                            <img src="~/Content/Images/Takım/@m.aciklamaGorsel" />
+                                            <div class="mt-overlay">
+                                                <h2> @m.takimAdi </h2>
+                                                <div class="mt-info font-white">
+                                                    <div class="mt-card-content">
+                                                        <p class="mt-card-desc font-white"> @m.Altkategori.ad </p>
+                                                        <div class="mt-card-social">
+                                                            <ul>
+                                                                <li>
+                                                                    <a class="mt-card-btn" href="/Takim/Gorsel/@m.takimId" title="Takım görselleri">
+                                                                        <i class="fa fa-image"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mt-card-btn" href="/Takim/Detay/@m.takimId" title="Takım detayını görüntüle">
+                                                                        <i class="fa fa-search"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mt-card-btn" href="/Takim/Duzenle/@m.takimId" title="Takım düzenle">
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mt-card-btn" href="/Takim/Sil/@m.takimId" title="Takım sil" onclick="return confirm('Silmek istediğinizden emin misiniz?')">
+                                                                        <i class="fa fa-trash"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                        else
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                Kayıt bulunamadı.
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

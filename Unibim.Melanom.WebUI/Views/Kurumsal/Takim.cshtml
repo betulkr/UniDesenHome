@@ -1,0 +1,180 @@
+﻿@model List<Unibim.Melanom.WebUI.Models.EntityModel.TakimViewModel>
+@{
+    ViewBag.Title = "Urun";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<Unibim.Melanom.WebUI.Models.EntityModel.KategoriViewModel> model = (List<Unibim.Melanom.WebUI.Models.EntityModel.KategoriViewModel>)Session["model"];
+    string altkategoriAd = Session["ad"].ToString();
+}
+
+
+<section class="main-header" style=" background-image: url('../../Content/mobel/template/assets/images/6.jpg')">
+    <header>
+        <div class="container">
+            <h1 class="h2 title"> TAKIMLAR </h1>
+            <ol class="breadcrumb breadcrumb-inverted">
+                <li><a href="/Anasayfa"><span class="icon icon-home"></span></a></li>
+                <li> @altkategoriAd </li>
+            </ol>
+        </div>
+    </header>
+</section>
+
+<section class="owl-icons-wrapper">
+
+
+    <div class="container">
+        <div class="owl-icons">
+            @if (model != null && model.Count > 0)
+            {
+                foreach (var m in model)
+                {
+                    foreach (var a in m.altkategoris)
+                    {
+                        string id = new Unibim.Melanom.WebUI.Models.EntityModel.Generate().GenerateItemNameAsParam(a.altkategoriId, a.ad);
+
+
+                        <a href="/Takimlar/@id">
+                            <figure>
+                                <i class="@a.icon"></i>
+                                <figcaption> @a.ad </figcaption>
+                            </figure>
+                        </a>
+
+                    }
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<section class="products">
+
+    <div class="container">
+
+
+        <div class="row">
+
+            <div class="col-md-12 col-xs-12">
+
+                <div class="sort-bar clearfix">
+                    <div class="sort-results pull-left">
+                     
+                        <select>
+                            <option value="1">10</option>
+                            <option value="2">50</option>
+                            <option value="3">100</option>
+                            <option value="4">All</option>
+                        </select>
+                    </div>
+                    <div class="sort-options pull-right">
+                        <span>Sırala</span>
+                        <select>
+                            <option value="1"> Yeni </option>
+                            <option value="2"> Popüler Ürünler </option>
+                            <option value="3"> Fiyat Artan </option>
+                            <option value="4"> Fiyaat Azalan </option>
+                        </select>
+                        <span class="grid-list">
+                            <a href="javascript:void(0);" class="toggle-filters-mobile"><i class="fa fa-search"></i></a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    @{
+                        if (Model != null && Model.Count > 0)
+                        {
+                            foreach (var i in Model)
+                            {
+                                if (i.TakimGorsels != null && i.TakimGorsels.Count > 0)
+                                {
+
+                                    string takimLink = "productid" + i.takim.takimId;
+                                    string urunId = new Unibim.Melanom.WebUI.Models.EntityModel.Generate().GenerateItemNameAsParam(i.takim.takimId, i.takim.takimAdi);
+
+                                        <div class="col-md-4 col-xs-8">
+                                            <article>
+                                                <div class="info">
+                                                    <span class="add-favorite">
+                                                        <a href="javascript:void(0);" data-title="Favorilere Ekle" data-title-added="Added to favorites list"><i class="icon icon-heart"></i></a>
+                                                    </span>
+                                                    <span>
+                                                        <a href="#@takimLink" class="mfp-open" data-title=" İncele "><i class="icon icon-eye"></i></a>
+                                                    </span>
+                                                </div>
+                                                <div class="btn btn-add">
+                                                    <i class="icon icon-cart"></i>
+                                                </div>
+                                                <div class="figure-grid">
+                                                    <div class="image">
+                                                        <a href="/Urunler/@urunId" >
+                                                            <img src="~/Content/Images/Takım/@i.TakimGorsels[0].gorsel" alt="" width="360" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                            <div class="figure-grid">
+                                                <div class="text">
+                                                    <h2 class="title h4"><a href="/Urunler/@urunId">  @i.takim.takimAdi  <sup> @i.takim.fiyat ₺</sup> </a></h2>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="popup-main mfp-hide" id="@takimLink">
+
+                                            <div class="product">
+
+                                                <div class="popup-title">
+                                                    <div class="h1 title">@i.takim.takimAdi <small> @i.takim.Altkategori.ad </small></div>
+                                                </div>
+
+                                                <div class="owl-product-gallery">
+                                                    @foreach (var g in i.TakimGorsels)
+                                                    {
+                                                        <img src="~/Content/Images/Takım/@g.gorsel" alt="" width="640" />
+                                                    }
+                                                </div>
+
+                                                <div class="popup-content">
+                                                    <div class="product-info-wrapper">
+                                                        <div class="row">
+
+                                                            <div class="col-sm-12">
+                                                                <div class="info-box">
+                                                                    <strong>Açıklama</strong>
+                                                                    <span><b>  @i.takim.aciklamaBaslik </b> <br /> @i.takim.aciklama </span>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="popup-table">
+                                                    <div class="popup-cell">
+                                                        <div class="price">
+                                                            <span class="h3">@i.takim.fiyat ₺ </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="popup-cell">
+                                                        <div class="popup-buttons">
+                                                            <a href="/Urunler/@urunId"><span class="icon icon-eye"></span> <span class="hidden-xs"> Detay </span></a>
+                                                            <a href="javascript:void(0);"><span class="icon icon-cart"></span> <span class="hidden-xs"> Satın Al </span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                }
+                            }
+                        }
+                    }
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

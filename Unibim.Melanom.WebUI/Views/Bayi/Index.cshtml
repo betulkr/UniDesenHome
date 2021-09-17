@@ -1,0 +1,48 @@
+﻿@model Unibim.Melanom.WebUI.Models.EntityModel.YoneticiViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBayi.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 red" href="/Siparis/Liste">
+            <div class="visual">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup"> @Model.bekleyen </span>
+                </div>
+                <div class="desc"> Yeni Siparişler </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 purple" href="/Siparis/Liste">
+            <div class="visual">
+                <i class="fa fa-check"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup"> @Model.tamamlanan </span>
+                </div>
+                <div class="desc"> Tamamlanan Siparişler </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 yellow" href="/Siparis/Liste">
+            <div class="visual">
+                <i class="fa fa-list"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup"> @Model.tumu </span>
+                </div>
+                <div class="desc"> Tüm Siparişler </div>
+            </div>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,177 @@
+﻿@model List<SepetUrun>
+@{
+    ViewBag.Title = "Sepet";
+    Layout = "~/Views/Shared/_LayoutBayi.cshtml";
+}
+
+
+<link href="~/Content/themes/metronic/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/themes/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+<div class="portlet light " id="form_wizard_1">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class=" icon-layers font-red"></i>
+            <span class="caption-subject font-red bold uppercase">
+                Sipariş Oluştur /
+                <span class="step-title"> ADIM-3 : Ürün Özellikleri </span>
+            </span>
+        </div>
+        <div class="actions">
+
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form class="form-horizontal" action="/Siparis/Sepet" method="POST">
+            <div class="form-wizard">
+                <div class="form-body">
+
+                    <ul class="nav nav-pills nav-justified steps">
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> <i class="fa fa-check"></i> </span>
+
+                                Müşteri Kayıt
+
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> <i class="fa fa-check"></i> </span>
+
+                                Ürün Seçimi
+
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#tab3" data-toggle="tab" class="step active">
+                                <span class="number"> 3 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Ürün Özellikleri
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> 4 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> İndirim
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tab" class="step">
+                                <span class="number"> 5 </span>
+                                <span class="desc">
+                                    <i class="fa fa-check"></i> Doğrulama
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr />
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab3">
+
+                            <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                <thead>
+                                    <tr>
+
+                                        <th> Ürün Adı </th>
+                                        <th> Ürün Özellikleri </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{
+                                        if (Model != null && Model.Count > 0)
+                                        {
+                                            foreach (var m in Model)
+                                            {
+
+                                                <tr>
+
+                                                    <td class="font-blue-hoki bold"> @m.Urun.ad </td>
+                                                    <td>
+                                                        <div class="form-control height-auto">
+                                                            <div class="scroller" style="height:275px;" data-always-visible="1">
+
+
+                                                                <ul class="list-unstyled">
+
+                                                                    @{
+                                                                        var ozellikTurs = Unibim.Melanom.WebUI.Models.Connection.DbModel.EF.OzellikTur.ToList();
+
+
+
+                                                                        if (ozellikTurs != null && ozellikTurs.Count > 0)
+                                                                        {
+                                                                            foreach (var t in ozellikTurs)
+                                                                            {
+                                                                                var urunOzelliks = Unibim.Melanom.WebUI.Models.Connection.DbModel.EF.UrunOzellik.Where(x => x.urunId == m.urunId && x.Ozellik.ozellikTurId== t.ozellikTurId).ToList();
+
+                                                                                if (urunOzelliks != null && urunOzelliks.Count > 0)
+                                                                                {
+                                                                                    <li>
+                                                                                        <label class="font-blue-hoki bold">
+                                                                                           @t.ad
+                                                                                        </label>
+                                                                                        <ul class="list-unstyled">
+
+                                                                                            @foreach (var o in urunOzelliks)
+                                                                                            {
+                                                                                                string value = m.sepetUrunId + "-" + o.urunOzellikId;
+
+                                                                                                <li>
+                                                                                                    <label>
+                                                                                                        <input type="checkbox" name="sepetUrunOzelliks[]" value="@value"> @o.Ozellik.ad
+                                                                                                    </label>
+                                                                                                </li>
+                                                                                            }
+
+                                                                                        </ul>
+                                                                                    </li>
+                                                                                }
+                                                                            }
+
+                                                                        }
+                                                                    }
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                        }
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <a href="javascript:;" class="btn default button-previous btn-circle">
+                                <i class="fa fa-angle-left"></i> Geri
+                            </a>
+                            <button type="submit" class="btn btn-outline blue-hoki btn-circle">
+                                <i class="glyphicon glyphicon-floppy-saved"></i>&nbsp; Kaydet
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/Content/themes/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/global/scripts/datatable.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+<script src="~/Content/themes/metronic/assets/pages/scripts/table-datatables-editable.min.js" type="text/javascript"></script>

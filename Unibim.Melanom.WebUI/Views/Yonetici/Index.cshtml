@@ -1,0 +1,87 @@
+﻿@model Unibim.Melanom.WebUI.Models.EntityModel.YoneticiViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+}
+<div class="row">
+    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 red" href="/MusteriSiparis/Bekleyen">
+            <div class="visual">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup"> @Model.bekleyen </span>
+                </div>
+                <div class="desc"> Yeni Siparişler </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 purple" href="/MusteriSiparis/Tamamlanan">
+            <div class="visual">
+                <i class="fa fa-check"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup"> @Model.tamamlanan </span>
+                </div>
+                <div class="desc"> Tamamlanan Siparişler </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 yellow" href="/MusteriSiparis/Tumu">
+            <div class="visual">
+                <i class="fa fa-list"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup"> @Model.tumu </span>
+                </div>
+                <div class="desc"> Tüm Siparişler </div>
+            </div>
+        </a>
+    </div>
+</div>
+@*<div class="row">
+    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 blue" href="/SiteManage/CompanyList">
+            <div class="visual">
+                <i class="fa fa-building-o "></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup"> 0 </span>
+                </div>
+                <div class="desc"> Yeni Siparişler </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
+            <div class="visual">
+                <i class="fa fa-users"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup"> 0 </span>
+                </div>
+                <div class="desc"> Tamamlanan Siparişler </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <a class="dashboard-stat dashboard-stat-v2 green" href="/SiteManage/Offers">
+            <div class="visual">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    <span data-counter="counterup"> 0 </span>
+                </div>
+                <div class="desc"> Tüm Siparişler </div>
+            </div>
+        </a>
+    </div>
+</div>*@

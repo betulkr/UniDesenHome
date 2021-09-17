@@ -1,0 +1,70 @@
+﻿@model TableParameters<Musteri>
+@{
+    Layout = "~/Views/Shared/_LayoutYonetici.cshtml";
+
+}
+@using (Ajax.BeginForm("Liste", "Musteri", null, new AjaxOptions { OnBegin = "OnBegin", OnComplete = "OnComplete", OnFailure = "OnFailure", OnSuccess = "CustomOnSuccess" }, null))
+{
+
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-blue-hoki">
+                <i class="fa fa-users font-blue-hoki"></i>
+                <span class="caption font-blue-hoki bold uppercase">
+                    &nbsp;  Desen Home Müşteri Listesi
+                </span>
+                <span class="caption-helper"></span>
+            </div>
+            <div class="actions">
+               
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="widget">
+                <div class="tablePars">
+                    <div class="dataTables_filter">
+                        <span>  Ara : </span>
+                        <input id="SearchKey" name="SearchKey" type="text" placeholder=" Ara :" /><div class="srch"></div>
+                    </div>
+                    <span class="icos-info tipS search-info" title="--"></span>
+                    <div class="dataTables_length">
+                        <span class="showentries"> Görünen: </span>
+                        <select id="Take" name="Take">
+                            <option value="10" selected="selected">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="tDefault fullwidth table table-hover" id="table-list"
+                       data-search-input="SearchKey" data-take-input="Take">
+                    <thead class="font-blue-hoki">
+                        <tr>
+                            <th> Müşteri Ad-Soyad </th>
+                            <th> İl-İlçe </th>
+                            <th> Adres</th>
+                            <th> Telefon </th>
+                            <th style="width:140px;"> İşlemler </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @Html.Partial("~/Views/Musteri/Partial/_Liste.cshtml", Model.Data)
+                    </tbody>
+                </table>
+
+                @Html.StrajaxPager(Model.TotalCount, Model.PageIndex, Model.PageCount, "table-list")
+            </div>
+        </div>
+    </div>
+}
+
+@section footerScript{
+    <script>
+        function CustomOnSuccess(result, status, xhr) {
+            OnSuccess(result, status, xhr);
+            ReloadData("#table-list", result);
+        }
+    </script>
+}
